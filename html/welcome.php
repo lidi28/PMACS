@@ -18,6 +18,21 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css"> -->
 </head>
 <body>
+    
+    <?php
+        if(isset($_POST['inspect'])) {
+            exec('sudo python -c \'import l298n_dc; l298n_dc.inspect()\'');
+        }
+        if(isset($_POST['moveToNext'])) {
+            exec('sudo python -c \'import l298n_dc; l298n_dc.moveToNext()\'');
+        }
+        if(isset($_POST['ledTest'])) {
+            exec('sudo python -c \'import l298n_dc; l298n_dc.ledTest()\'');
+        }
+
+
+    ?>
+    
     <div class="top_block">
         
     </div>
@@ -33,6 +48,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <a href="reset-password.php" class="btn btn-warning">Сменить пароль</a>
         <a href="logout.php" class="btn btn-danger">Выход из аккаунта</a>
     </div>
+    <form method="post">
+        <input type="submit" name="inspect" value="Inspect"/>
+        <input type="submit" name="moveToNext" value="Move to next"/>
+        <input type="submit" name="ledTest" value="LED Test"/>
+    </form>
 </body>
 </html>
 
